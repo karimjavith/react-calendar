@@ -9,14 +9,14 @@ class CalendarPresentation extends React.Component {
       <div className="header row flex-middle">
         <div className="col col-start">
           <div className="icon" onClick={this.prevMonth}>
-            chevron_left
+            <span><i className="glyphicon glyphicon-chevron-left"></i></span>
           </div>
         </div>
         <div className="col col-center">
           <span>{dateFns.format(currentMonth, dateFormat)}</span>
         </div>
         <div className="col col-end" onClick={this.nextMonth}>
-          <div className="icon">chevron_right</div>
+          <div className="icon"><span><i className="glyphicon glyphicon-chevron-right"></i></span></div>
         </div>
       </div>
     );
@@ -30,7 +30,7 @@ class CalendarPresentation extends React.Component {
     for (let i = 0; i < 7; i++) {
       days.push(
         <div className="col col-center" key={i}>
-          {dateFns.format(dateFns.addDays(startDate, i), dateFormat).substr(0,1)}
+          {dateFns.format(dateFns.addDays(startDate, i), dateFormat).substr(0, 1)}
         </div>
       );
     }
@@ -61,9 +61,9 @@ class CalendarPresentation extends React.Component {
               !dateFns.isSameMonth(day, monthStart)
                 ? "disabled"
                 : dateFns.isSameDay(day, selectedDate)
-                ? "selected"
-                : ""
-            }`}
+                  ? "selected"
+                  : ""
+              }`}
             key={day}
             onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
           >
