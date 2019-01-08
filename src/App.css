@@ -99,7 +99,6 @@ main {
   max-width: 50em;
 }
 
-
 /* GRID */
 
 .row {
@@ -137,12 +136,12 @@ main {
 }
 
 
-/* Calendar */
+/* Month  Calendar */
 
 .calendar {
   display: block;
   position: relative;
-  width: 30%;
+  width: 17%;
   background: var(--neutral-color);
   border: 1px solid var(--border-color);
 }
@@ -257,11 +256,71 @@ main {
   flex-basis: calc(100%/7);
   width: calc(100%/7);
 }
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/* Day week menu container */
+.sub-content-container__header {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+.sub-content-container__header-dateTimeDisplay, .sub-content-container__header {
+  margin: 1em 0;
+  line-height: 1;
+}
+.day-week-calendar-menu-container {	position: relative;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+}
+.day-week-calendar-menu-container .menu__list {
+	position: relative;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.day-week-calendar-menu-container .menu__item {
+	display: block;
+	margin: 1em 0;
+}
+
+.day-week-calendar-menu-container .menu__link {
+	position: relative;
+	display: block;
+	margin: 0 1.5em;
+	padding: 0.75em 0;
+	text-align: center;
+	color: #b5b5b5;
+	transition: color 0.3s;
+}
+
+.day-week-calendar-menu-container .menu__link:hover,
+.day-week-calendar-menu-container .menu__link:focus {
+	color: #929292;
+}
+
+.day-week-calendar-menu-container .menu__link::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 4px;
+	background: #d94f5c;
+	transform: scale3d(0, 1, 1);
+	transition: transform 0.1s;
+}
+/* Day calendar */
+.day-calendar-container .hour-container {
+  padding: 3px;
+  border-bottom: 1px solid var(--border-color);
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { onDateClick, prevMonth, nextMonth } from "../store";
-import CalendarPresentation from '../presentation/CalendarPresentation';
+import MonthCalendarPresentation from "../presentation/Month.Calendar.Presentation";
 
 const mapStateToProps = state => {
   return {
@@ -15,9 +15,9 @@ const mapDispatchToProps = dispatch => ({
   prevMonth: dateFns => dispatch(prevMonth(dateFns))
 });
 
-const CalendarContainer = connect(
+const MonthCalendarContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CalendarPresentation);
+)(MonthCalendarPresentation);
 
-export default CalendarContainer;
+export default MonthCalendarContainer;
