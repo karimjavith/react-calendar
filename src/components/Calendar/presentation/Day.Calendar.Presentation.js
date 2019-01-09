@@ -11,12 +11,24 @@ const getRows = () => {
     );
 };
 
-const DayCalendarPresentation = ({ updateCurrentView }) => {
+class DayCalendarPresentation extends React.Component {
+    componentWillMount() {
+        this.props.updateCurrentView('DAY');
+    }
+    render() {
+        return (
+            <div className="day-calendar-container">{getRows()}
+            </div>
+        );
 
-    updateCurrentView('DAY');
-    return (
-        <div className="day-calendar-container">{getRows()}
-        </div>
-    );
+    }
 }
+// const DayCalendarPresentation = ({ updateCurrentView }) => {
+
+//     updateCurrentView('DAY');
+//     return (
+//         <div className="day-calendar-container">{getRows()}
+//         </div>
+//     );
+// }
 export default DayCalendarPresentation;

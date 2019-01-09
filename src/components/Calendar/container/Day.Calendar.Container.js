@@ -5,8 +5,7 @@ import DayCalendarPresentation from "../presentation/Day.Calendar.Presentation";
 
 const mapStateToPropsDayCalendar = state => {
     return {
-        currentMonth: state.calendar.currentMonth,
-        selectedDate: state.calendar.selectedDate
+        currentMonth: state.calendar.currentMonth
     };
 };
 

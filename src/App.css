@@ -21,7 +21,7 @@
 .App-link {
   color: #61dafb;
 }
-
+.row:before, .row:after {display: none !important;}
 /* FONT IMPORTS */
 
 .icon {
@@ -47,10 +47,12 @@
   --main-color: #1a8fff;
   --text-color: #777;
   --text-color-light: #ccc;
+  --white: #fff;
   --border-color: #eee;
   --bg-color: #f9f9f9;
   --neutral-color: #fff;
   --badge-notification: #f2372e;
+  --highlight-red-1: #DF1E1E;
   --small-font-size: 9px;
 }
 
@@ -247,9 +249,9 @@ main {
 .sub-content-container {
   border: 1px solid var(--border-color);
   margin-top: 31px;
-  max-height: calc(100% - 100px);
-  height: 700px;
-  overflow: auto;
+  color: var(--text-color);
+  font-weight: 400;
+  background: var(--bg-color);
 }
 
 .sub-content-container .sub-content-container__header {
@@ -299,6 +301,11 @@ main {
 }
 
 /* Day calendar */
+.day-calendar-container {
+  max-height: calc(100% - 100px);
+  height: 700px;
+  overflow: auto;
+}
 .day-calendar-container .hour-container__bottom {
   padding: 3px;
   border-bottom: 1px solid var(--border-color);
@@ -315,11 +322,23 @@ main {
   border-bottom: 1px solid var(--border-color);
   font-size: var(--small-font-size);
 }
+.week-calendar-container .hour-container-content {
+  max-height: calc(100% - 100px);
+  height: 700px;
+  overflow: auto;
+}
 .week-calendar-container .week-calendar__header {
   flex: 1 1 auto;
   margin-bottom: 2px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border-color);
+}
+.week-calendar-container .week-calendar__header-column.selected {
+  color: var(--white);
+  padding: 1px 15px;
+  background: var(--highlight-red-1);
+  border-radius: 5%;
+  transform: translateX(-8px);
 }
 .week-calendar-container .week-calendar__header .week-calendar__header-column {
   flex: 1 0 auto;
