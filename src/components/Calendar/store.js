@@ -16,9 +16,23 @@ export const prevMonth = dateFns => {
     dateFns
   };
 };
-const initialState = {
+export const modifyDate = (dateFns, count) => {
+  return {
+    type: "MODIFY_DATE",
+    dateFns,
+    count
+  };
+};
+export const updateCurrentView = viewType => {
+  return {
+    type: "UPDATE_CURRENT_VIEW",
+    viewType
+  };
+};
+export const initialState = {
   currentMonth: new Date(),
-  selectedDate: new Date()
+  selectedDate: new Date(),
+  currentView: "DAY"
 };
 const calendar = (state = initialState, action) => {
   switch (action.type) {
@@ -37,6 +51,25 @@ const calendar = (state = initialState, action) => {
       return {
         ...state,
         currentMonth: action.dateFns.subMonths(state.currentMonth, 1)
+      };
+    case "MODIFY_DATE":
+      let displayDate;
+      if (state.currentView === "WEEK") {
+        displayDate = action.dateFns.addDays(
+          state.selectedDate,
+          Math.sign(action.count) === 1 ? 7 : -7
+        );
+      } else
+        displayDate = action.dateFns.addDays(state.selectedDate, action.count);
+      return {
+        ...state,
+        selectedDate: displayDate,
+        currentMonth: action.dateFns.format(displayDate)
+      };
+    case "UPDATE_CURRENT_VIEW":
+      return {
+        ...state,
+        currentView: action.viewType
       };
     default:
       return state;

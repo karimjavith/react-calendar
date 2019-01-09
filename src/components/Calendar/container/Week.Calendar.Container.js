@@ -1,17 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { onDateClick, prevMonth, nextMonth } from "../store";
+import { updateCurrentView } from "../store";
 import WeekCalendarPresentation from "../presentation/Week.Calendar.Presentation";
-
-const mapStateToProps = state => {
-  return {
-    currentMonth: state.calendar.currentMonth,
-    selectedDate: state.calendar.selectedDate
+const mapStateToPropsWeekCalendar = state => {
+    return {
+      currentMonth: state.calendar.currentMonth,
+      selectedDate: state.calendar.selectedDate
+    };
   };
-};
-
-const WeekCalendarContainer = connect(
-  mapStateToProps
-)(WeekCalendarPresentation);
+  const mapDispatchToPropsWeekCalendar = dispatch => ({
+    updateCurrentView: viewType => dispatch(updateCurrentView(viewType))
+  });
+  const WeekCalendarContainer = connect(
+    mapStateToPropsWeekCalendar,
+    mapDispatchToPropsWeekCalendar
+  )(WeekCalendarPresentation);
 
 export default WeekCalendarContainer;

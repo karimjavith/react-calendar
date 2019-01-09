@@ -1,23 +1,22 @@
 import React from "react";
-
 const getRows = () => {
     const arr24 = Array(24).fill({});
     return (
         <div>
             {arr24.map((v, i) => {
                 let hour = i < 10 ? `0` + i++ : i++;
-                return <div className="hour-container-wrapper" key={Math.random(i)}><div>{hour}:00</div><div className="hour-container"></div></div>
+                return <div className="hour-container-wrapper" key={Math.random(i)}><div>{hour}:00</div><div className="hour-container__bottom"></div></div>
             })}
         </div>
     );
 };
 
-const DayCalendarPresentation = () => {
+const DayCalendarPresentation = ({ updateCurrentView }) => {
+
+    updateCurrentView('DAY');
     return (
-        <div className="day-calendar-container">
-            {getRows()}
+        <div className="day-calendar-container">{getRows()}
         </div>
     );
 }
-
 export default DayCalendarPresentation;
