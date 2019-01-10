@@ -362,3 +362,47 @@ main {
 .sub-calendar-container .sub-calendar-container__wrapper {
   margin: 2em 0;
 }
+
+/* MyCalendar container */
+.sub-calendar-container__mycalendar {
+  margin-top: 3em;
+}
+
+.sub-calendar-container__mycalendar .my-calendar-container {
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  min-width: 100%;
+}
+
+.sub-calendar-container__mycalendar .my-calendar-container .custom-control-checkbox-container {
+  color: var(--checkbox-color-1);
+  margin-left: 12px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.sub-calendar-container__mycalendar .my-calendar-container .custom-control-checkbox-container .custom-control-input {
+  display: none;
+}
+
+.sub-calendar-container__mycalendar .my-calendar-container .custom-control-checkbox-container .custom-control-input:checked~.custom-control-indicator {
+  border-color: var(--checkbox-color-1);
+  -webkit-transform: rotateZ(45deg) translate(1px, -5px);
+  transform: rotateZ(45deg) translate(1px, -5px);
+  width: 10px;
+  border-top: 0px solid #fff;
+  border-left: 0px solid #fff;
+}
+
+.sub-calendar-container__mycalendar .my-calendar-container .custom-control-checkbox-container .custom-control-indicator {
+  display: inline-block;
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border-color);
+  transition: 0.3s;
+}

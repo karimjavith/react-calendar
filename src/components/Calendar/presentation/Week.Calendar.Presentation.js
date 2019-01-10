@@ -1,10 +1,10 @@
 import React from "react";
 import dateFns from "date-fns";
 
-const getHeaderForWeeks = (currentMonth, selectedDate) => {
+const getHeaderForWeeks = (selectedDate) => {
   const dateFormat = "DD ddd";
   const arr7 = Array(7).fill({});
-  let startDate = dateFns.startOfWeek(currentMonth);
+  let startDate = dateFns.startOfWeek(selectedDate);
 
   return (
     <div className="week-calendar__header row">
@@ -48,39 +48,14 @@ class WeekCalendarPresentation extends React.Component {
     this.props.updateCurrentView('WEEK');
   }
   render() {
-    const { currentMonth, selectedDate } = this.props;
+    const { selectedDate } = this.props;
     return (
       <div className="week-calendar-container">
-        <div>{getHeaderForWeeks(currentMonth, selectedDate)}</div>
+        <div>{getHeaderForWeeks(selectedDate)}</div>
         {getRowsForWeeks()}
       </div>
     );
 
   }
 }
-// const WeekCalendarPresentation = ({ selectedDate, updateCurrentView, currentMonth }) => {
-//   const dateFormat = "DD ddd";
-//   const arr7 = Array(7).fill({});
-//   let startDate = dateFns.startOfWeek(currentMonth);
-//   // updateCurrentView("WEEK");
-//   return (
-//     <div className="week-calendar-container">
-//       {/* {getHeaderForWeeks(currentMonth, selectedDate)} */}
-//       <div className="week-calendar__header row">
-//         {arr7.map((v, i) => {
-//           return (
-//             <div
-
-//               className={`col week-calendar__header-column ${dateFns.isSameDay(dateFns.format(dateFns.addDays(startDate, i)), dateFns.format(selectedDate)) ? 'selected' : ''}`}
-//               key={Math.random(i)}
-//             >
-//               {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
-//             </div>
-//           );
-//         })}
-//       </div>
-//       {getRowsForWeeks()}
-//     </div>
-//   );
-// };
 export default WeekCalendarPresentation;

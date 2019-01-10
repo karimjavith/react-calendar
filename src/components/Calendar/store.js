@@ -1,3 +1,11 @@
+const BUILDING_CALENDAR_ACTIONS = {
+  SELECT_DATE: "SELECT_DATE",
+  NEXT_MONTH: "NEXT_MONTH",
+  PREV_MONTH: "PREV_MONTH",
+  MODIFY_DATE: "MODIFY_DATE",
+  UPDATE_CURRENT_VIEW: "UPDATE_CURRENT_VIEW",
+  GET_CALENDAR_TYPE_LIST: "GET_CALENDAR_TYPE_LIST"
+};
 export const onDateClick = day => {
   return {
     type: "DATE_CLICK",
@@ -34,6 +42,12 @@ export const initialState = {
   selectedDate: new Date(),
   currentView: "DAY"
 };
+export const getCalendarTypeList = () => {
+  return {
+    type: BUILDING_CALENDAR_ACTIONS.GET_CALENDAR_TYPE_LIST
+  };
+};
+
 const calendar = (state = initialState, action) => {
   switch (action.type) {
     case "DATE_CLICK":
@@ -70,6 +84,19 @@ const calendar = (state = initialState, action) => {
       return {
         ...state,
         currentView: action.viewType
+      };
+    case BUILDING_CALENDAR_ACTIONS.GET_CALENDAR_TYPE_LIST:
+      return {
+        ...state,
+        calendarTypes: () => {
+          return {
+            1: "Facility Calendar",
+            2: "Request Calendar",
+            3: "Response Calendar",
+            4: "Building Inspection",
+            5: "Others"
+          }
+        }
       };
     default:
       return state;
