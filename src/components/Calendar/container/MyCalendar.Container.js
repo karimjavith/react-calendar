@@ -1,18 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import { onDateClick, prevMonth, nextMonth } from "../store";
-import MyCalendarPresentation from "../presentation/MyCalendar.Presentation"; 
+import { getCalendarTypeList, toggleMyCalendarViewfn } from "../store";
+import MyCalendarPresentation from "../presentation/MyCalendar.Presentation";
 
-const mapStateToPropsMyCalendar = state => {
+const mapStateToPropsMyCalendar = (state) => {
     return {
-        calendarTypes: state.calendar.calendarTypes
+        calendarTypes: state.calendar.calendarTypes,
+        toggleCalendarView: state.calendar.toggleCalendarView
+
     };
 };
 const mapDispatchToPropsMyCalendar = dispatch => ({
-    getCalendarTypeList: () => dispatch(getCalendarTypeList())
+    getCalendarTypeList: () => dispatch(getCalendarTypeList()),
+    toggleMyCalendarViewfn: () => dispatch(toggleMyCalendarViewfn())
 
 });
 const MyCalendarContainer = connect(
     mapStateToPropsMyCalendar,
     mapDispatchToPropsMyCalendar
 )(MyCalendarPresentation);
+
+export default MyCalendarContainer;

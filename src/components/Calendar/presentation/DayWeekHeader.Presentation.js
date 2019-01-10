@@ -18,7 +18,7 @@ const DayWeekHeaderPresentation = ({
   };
   return (
     <div className="sub-content-container__header row">
-      <div className="sub-content-container__header-dateTimeDisplay col-md-8 col-sm-8 col-xs-12">
+      <div className="sub-content-container__header-dateTimeDisplay  col-xs-12 col-sm-12 col-md-8 ">
         <div className="row">
           <div className="col-md-2">
             <span>
@@ -37,7 +37,7 @@ const DayWeekHeaderPresentation = ({
           <div className="col-md-10">{getDateOrWeekDisplay(currentView)}</div>
         </div>
       </div>
-      <div className="sub-content-container__header-navMenu col-md-4 col-sm-4 col-xs-12">
+      <div className="sub-content-container__header-navMenu hidden-xs hidden-sm col-md-4 col-lg-4">
         <ul className="day-week-calendar-menu-container">
           <div className="day-calendar-menu-container">
             <ul className="nav nav-pills">

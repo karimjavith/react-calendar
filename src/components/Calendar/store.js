@@ -37,10 +37,17 @@ export const updateCurrentView = viewType => {
     viewType
   };
 };
+export const toggleMyCalendarViewfn = () => {
+  return {
+    type: "TOGGLE_MYCALENDAR_VIEW"
+  };
+};
 export const initialState = {
   currentMonth: new Date(),
   selectedDate: new Date(),
-  currentView: "DAY"
+  currentView: "DAY",
+  toggleCalendarView: undefined,
+  calendarTypes: {}
 };
 export const getCalendarTypeList = () => {
   return {
@@ -88,15 +95,18 @@ const calendar = (state = initialState, action) => {
     case BUILDING_CALENDAR_ACTIONS.GET_CALENDAR_TYPE_LIST:
       return {
         ...state,
-        calendarTypes: () => {
-          return {
-            1: "Facility Calendar",
-            2: "Request Calendar",
-            3: "Response Calendar",
-            4: "Building Inspection",
-            5: "Others"
-          }
+        calendarTypes: {
+          1: "Facility Calendar",
+          2: "Request Calendar",
+          3: "Response Calendar",
+          4: "Building Inspection",
+          5: "Others"
         }
+      };
+    case "TOGGLE_MYCALENDAR_VIEW":
+      return {
+        ...state,
+        toggleCalendarView: !state.toggleCalendarView
       };
     default:
       return state;

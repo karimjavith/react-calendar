@@ -54,6 +54,7 @@
   --badge-notification: #f2372e;
   --highlight-red-1: #DF1E1E;
   --small-font-size: 9px;
+  --black: #000;
 }
 
 /* GENERAL */
@@ -375,7 +376,19 @@ main {
   width: 100%;
   min-width: 100%;
 }
+.sub-calendar-container__mycalendar .my-calendar-container  .my-calendar-container__header {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 2;
+}
 
+.sub-calendar-container__mycalendar .my-calendar-container  .my-calendar-container__header span:first-child {
+  width: 90%;
+}
+.sub-calendar-container__mycalendar .my-calendar-container  .my-calendar-container__header span:last-child {
+  margin-top: 10px;
+  cursor: pointer;
+}
 .sub-calendar-container__mycalendar .my-calendar-container .custom-control-checkbox-container {
   color: var(--checkbox-color-1);
   margin-left: 12px;
@@ -405,4 +418,69 @@ main {
   height: 16px;
   border: 2px solid var(--border-color);
   transition: 0.3s;
+}
+
+
+
+/* loader */
+.loader-container-wrapper {
+  min-height: 100px;
+  text-align: center;
+  padding: 10px 0px;
+  margin: 0 auto;
+}
+.loader-container-wrapper .loader-container{
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.loader-container-wrapper .loader-container div {
+  position: absolute;
+  top: 27px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--text-color);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.loader-container-wrapper .loader-container div:nth-child(1) {
+  left: 6px;
+  animation: loader-container1 0.6s infinite;
+}
+.loader-container-wrapper .loader-container div:nth-child(2) {
+  left: 6px;
+  animation: loader-container2 0.6s infinite;
+}
+.loader-container-wrapper .loader-container div:nth-child(3) {
+  left: 26px;
+  animation: loader-container2 0.6s infinite;
+}
+.loader-container-wrapper .loader-container div:nth-child(4) {
+  left: 45px;
+  animation: loader-container3 0.6s infinite;
+}
+@keyframes loader-container1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes loader-container3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes loader-container2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
 }
