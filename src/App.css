@@ -21,7 +21,10 @@
 .App-link {
   color: #61dafb;
 }
-.row:before, .row:after {display: none !important;}
+.row:before,
+.row:after {
+  display: none !important;
+}
 /* FONT IMPORTS */
 
 .icon {
@@ -52,7 +55,7 @@
   --bg-color: #f9f9f9;
   --neutral-color: #fff;
   --badge-notification: #f2372e;
-  --highlight-red-1: #DF1E1E;
+  --highlight-red-1: #df1e1e;
   --small-font-size: 9px;
   --black: #000;
   --border-color-dark: #6e655d;
@@ -286,7 +289,9 @@ main {
   transition: 0.25s ease-out;
 }
 
-.sub-content-container .sub-content-container__header-dateTimeDisplay i:last-child {
+.sub-content-container
+  .sub-content-container__header-dateTimeDisplay
+  i:last-child {
   margin-left: 3px;
 }
 
@@ -316,39 +321,129 @@ main {
   display: flex;
 }
 .day-calendar-container .hour-container-wrapper .hour-inner {
- position: relative;
- height: auto;
- width: 90%;
+  position: relative;
+  height: auto;
+  width: 90%;
 }
-.day-calendar-container .hour-container-wrapper .hour-inner .event-container-wrapper .event-container {
- display: flex;
- position: absolute;
- height: 200px;
- width: 100%;
- flex: 1 1 20%;
- top: 12px;
- right: 0;
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .day-calendar-container .hour-container-wrapper .hour-inner {
+    margin-left: 20px;
+  }
 }
-.day-calendar-container .hour-container-wrapper .hour-inner .event-container-wrapper .event-container div{
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .day-calendar-container .hour-container-wrapper .hour-inner {
+    margin-left: 20px;
+  }
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .day-calendar-container .hour-container-wrapper .hour-inner {
+    margin-left: 30px;
+  }
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .day-calendar-container .hour-container-wrapper .hour-inner {
+    margin-left: 30px;
+  }
+}
+.day-calendar-container
+  .hour-container-wrapper
+  .hour-inner
+  .event-container-wrapper
+  .event-container {
+  display: flex;
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  flex: 1 1 20%;
+  top: 12px;
+  right: 0;
+}
+.day-calendar-container
+  .hour-container-wrapper
+  .hour-inner
+  .event-container-wrapper
+  .event-container
+  div {
   background-color: #2ca18c;
   z-index: 998;
   border: 1px solid transparent;
   border-radius: 10px;
   margin-right: 2px;
- }
+}
 .day-calendar-container .hour-container-wrapper .hour {
   height: 40px;
   width: 5%;
 }
+.day-calendar-container
+  .hour-container-wrapper
+  .hour-inner
+  .same-hour-container {
+  width: 100%;
+  position: absolute;
+  z-index: 9999;
+}
+.day-calendar-container
+  .hour-container-wrapper
+  .hour-inner
+  .same-hour-container::before {
+  height: 10px;
+  border: 1px solid #df1e1e;
+  width: 10px;
+  position: absolute;
+  content: "";
+  top: 7px;
+  border-radius: 20px;
+  background: #df1e1e;
+}
+.day-calendar-container
+  .hour-container-wrapper
+  .hour-inner
+  .same-hour-container::after {
+  height: 1px;
+  border-bottom: 1px solid #df1e1e;
+  width: 100%;
+  position: absolute;
+  content: "";
+  top: 12px;
+}
 
-.day-calendar-container .hour-container-wrapper .hour-inner .border-bottom::after {
-  content: '';
-  border-bottom: 1px solid var(--border-color); 
+.day-calendar-container
+  .hour-container-wrapper
+  .hour-inner
+  .border-bottom::after {
+  content: "";
+  border-bottom: 1px solid var(--border-color);
   position: absolute;
   width: 100%;
   top: 10px;
 }
-.day-calendar-container .hour-container-wrapper .hour-inner .event-container-wrapper {
+.day-calendar-container
+  .hour-container-wrapper
+  .hour-inner
+  .event-container-wrapper {
   position: relative;
   height: auto;
 }
@@ -386,7 +481,9 @@ main {
   width: 92px;
   text-align: center;
 }
-.week-calendar-container .week-calendar__header .week-calendar__header-column:first-child {
+.week-calendar-container
+  .week-calendar__header
+  .week-calendar__header-column:first-child {
   width: 130px;
 }
 .week-calendar-container .hour-container-wrapper .hour-container__rowCells {
@@ -416,31 +513,48 @@ main {
   width: 100%;
   min-width: 100%;
 }
-.sub-calendar-container__mycalendar .my-calendar-container  .my-calendar-container__header {
+.sub-calendar-container__mycalendar
+  .my-calendar-container
+  .my-calendar-container__header {
   display: flex;
   flex-direction: row;
   flex-grow: 2;
 }
 
-.sub-calendar-container__mycalendar .my-calendar-container  .my-calendar-container__header span:first-child {
+.sub-calendar-container__mycalendar
+  .my-calendar-container
+  .my-calendar-container__header
+  span:first-child {
   width: 90%;
 }
-.sub-calendar-container__mycalendar .my-calendar-container  .my-calendar-container__header span:last-child {
+.sub-calendar-container__mycalendar
+  .my-calendar-container
+  .my-calendar-container__header
+  span:last-child {
   margin-top: 10px;
   cursor: pointer;
 }
-.sub-calendar-container__mycalendar .my-calendar-container .custom-control-checkbox-container {
+.sub-calendar-container__mycalendar
+  .my-calendar-container
+  .custom-control-checkbox-container {
   color: var(--checkbox-color-1);
   margin-left: 12px;
   font-weight: normal;
   cursor: pointer;
 }
 
-.sub-calendar-container__mycalendar .my-calendar-container .custom-control-checkbox-container .custom-control-input {
+.sub-calendar-container__mycalendar
+  .my-calendar-container
+  .custom-control-checkbox-container
+  .custom-control-input {
   display: none;
 }
 
-.sub-calendar-container__mycalendar .my-calendar-container .custom-control-checkbox-container .custom-control-input:checked~.custom-control-indicator {
+.sub-calendar-container__mycalendar
+  .my-calendar-container
+  .custom-control-checkbox-container
+  .custom-control-input:checked
+  ~ .custom-control-indicator {
   border-color: var(--checkbox-color-1);
   -webkit-transform: rotateZ(45deg) translate(1px, -5px);
   transform: rotateZ(45deg) translate(1px, -5px);
@@ -449,7 +563,10 @@ main {
   border-left: 0px solid #fff;
 }
 
-.sub-calendar-container__mycalendar .my-calendar-container .custom-control-checkbox-container .custom-control-indicator {
+.sub-calendar-container__mycalendar
+  .my-calendar-container
+  .custom-control-checkbox-container
+  .custom-control-indicator {
   display: inline-block;
   position: absolute;
   top: 4px;
@@ -460,8 +577,6 @@ main {
   transition: 0.3s;
 }
 
-
-
 /* loader */
 .loader-container-wrapper {
   min-height: 100px;
@@ -469,7 +584,7 @@ main {
   padding: 10px 0px;
   margin: 0 auto;
 }
-.loader-container-wrapper .loader-container{
+.loader-container-wrapper .loader-container {
   display: inline-block;
   position: relative;
   width: 64px;
