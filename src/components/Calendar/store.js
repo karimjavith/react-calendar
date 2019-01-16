@@ -4,7 +4,8 @@ const BUILDING_CALENDAR_ACTIONS = {
   PREV_MONTH: "PREV_MONTH",
   MODIFY_DATE: "MODIFY_DATE",
   UPDATE_CURRENT_VIEW: "UPDATE_CURRENT_VIEW",
-  GET_CALENDAR_TYPE_LIST: "GET_CALENDAR_TYPE_LIST"
+  GET_CALENDAR_TYPE_LIST: "GET_CALENDAR_TYPE_LIST",
+  ERROR_BOUNDARY: "ERROR_BOUNDARY"
 };
 export const onDateClick = day => {
   return {
@@ -42,12 +43,22 @@ export const toggleMyCalendarViewfn = () => {
     type: "TOGGLE_MYCALENDAR_VIEW"
   };
 };
+export const throwErrorFromBoundary = errorObj => {
+  return {
+    type: BUILDING_CALENDAR_ACTIONS.ERROR_BOUNDARY,
+    errorObj
+  }
+}
 export const initialState = {
   currentMonth: new Date(),
   selectedDate: new Date(),
   currentView: "DAY",
   toggleCalendarView: undefined,
-  calendarTypes: {}
+  calendarTypes: {},
+  errorBoundary: {
+    error: null,
+    errorInfo: null
+  }
 };
 export const getCalendarTypeList = () => {
   return {
@@ -108,6 +119,14 @@ const calendar = (state = initialState, action) => {
         ...state,
         toggleCalendarView: !state.toggleCalendarView
       };
+    case BUILDING_CALENDAR_ACTIONS.ERROR_BOUNDARY:
+    return {
+      ...state,
+      errorBoundary: Object.assign({}, state.errorBoundary, {
+        ["error"]: action.errorObj.error,
+        ["errorInfo"]: action.errorObj.errorInfo
+      })
+    }
     default:
       return state;
   }

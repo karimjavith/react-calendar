@@ -32,6 +32,7 @@ class MyCalendarPresentation extends React.Component {
             {/* <LoaderPresentation /> */}
             <ul className="my-calendar-container__list row">
               {Object.keys(calendarTypes).map(key => {
+                // {calendarTypes.map(key => {
                 return (
                   <li key={Math.random(key)}>
 
