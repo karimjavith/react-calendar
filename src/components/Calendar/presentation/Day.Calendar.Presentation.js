@@ -7,7 +7,7 @@ const buildEventCards = (startPoint, endPoint, toggleFn) => {
     width: "100%"
   };
   let elmPos = ``;
-  let modalHTMLObj = { title: `Event`, contentHTML: `<div>Day calendar - ${startPoint}</div>`, elementPosition: elmPos }
+  let modalHTMLObj = { title: `Event`, contentHTML: `<div class="modal-body-content-container"><div class="event-descr"><span class="glyphicon glyphicon-calendar"></span><span class="event-label">Event name</span></div><div class='event-time'><span class="glyphicon glyphicon-time"></span><span class="event-label">12:30 - 14:30</span></div></div>`, elementPosition: elmPos }
   return <div role="button" ref={e => {elmPos = e && e.getBoundingClientRect()}} onClick={(e) => toggleFn(true, modalHTMLObj, elmPos )} style={styleElements} />;
 };
 

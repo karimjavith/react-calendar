@@ -7,10 +7,11 @@ const ModalPresentation = ({
   elementPosition,
   toggleModal
 }) => {
+    console.log(elementPosition)
   return showModal ? (
-    <div>
+    <div style={{position: "absolute"}}>
       <div
-        style={{ display: "block", top: elementPosition.top, position: "absolute" }}
+        style={{ display: "block", position: "fixed", margin: "0 auto", zIndex: 9998, bottom: "auto", pointerEvents: "all" }}
         className="modal"
         tabIndex="-1"
         role="dialog"
