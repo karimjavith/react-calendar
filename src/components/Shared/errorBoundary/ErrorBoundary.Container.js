@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { throwErrorFromBoundary } from "../store";
-import ErrorBoundaryPresentation from "../presentation/ErrorBoundary.Presentation";
+import { throwErrorFromBoundary } from "./store/error.store";
+import ErrorBoundaryPresentation from "./ErrorBoundary.Presentation";
 
 const mapStateToPropsErrorBoundary = state => {
     return {

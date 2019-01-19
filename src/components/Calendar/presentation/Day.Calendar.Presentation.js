@@ -7,8 +7,29 @@ const buildEventCards = (startPoint, endPoint, toggleFn) => {
     width: "100%"
   };
   let elmPos = ``;
-  let modalHTMLObj = { title: `Event`, contentHTML: `<div class="modal-body-content-container"><div class="event-descr"><span class="glyphicon glyphicon-calendar"></span><span class="event-label">Event name</span></div><div class='event-time'><span class="glyphicon glyphicon-time"></span><span class="event-label">12:30 - 14:30</span></div></div>`, elementPosition: elmPos }
-  return <div role="button" ref={e => {elmPos = e && e.getBoundingClientRect()}} onClick={(e) => toggleFn(true, modalHTMLObj, elmPos )} style={styleElements} />;
+  let modalHTMLObj = {
+    title: `Event`,
+    contentHTML: `<div class="modal-body-content-container"><div class="event-descr"><span class="glyphicon glyphicon-calendar"></span><span class="event-label">Event name</span></div><div class='event-time'><span class="glyphicon glyphicon-time"></span><span class="event-label">12:30 - 14:30</span></div></div>`,
+    elementPosition: elmPos
+  };
+  return (
+    <div
+      className="event-card"
+      role="button"
+      ref={e => {
+        elmPos = e && e.getBoundingClientRect();
+      }}
+      onClick={e => toggleFn(true, modalHTMLObj, elmPos)}
+      style={styleElements}
+    >
+      <div className="event-name">
+        <span>Event Name</span>
+      </div>
+      <div className="event-time">
+        <span>12:30 - 14:30</span>
+      </div>
+    </div>
+  );
 };
 
 class DayCalendarPresentation extends React.Component {
@@ -18,11 +39,11 @@ class DayCalendarPresentation extends React.Component {
   render() {
     const getSameHrContainer = () => {
       const getMin = dateFns.getMinutes(new Date());
-      const topPosition = getMin < 30 ? '20px' : '30px'
+      const topPosition = getMin < 30 ? "20px" : "30px";
       return (
         <div style={{ top: topPosition }} className="same-hour-container" />
       );
-    }
+    };
     const getRows = () => {
       const arr24 = Array(24).fill({});
       const mockCalendar = [
@@ -54,7 +75,8 @@ class DayCalendarPresentation extends React.Component {
                 <div className="hour-inner">
                   <div className="border-bottom" />
                   {dateFns.isSameDay(this.props.selectedDate, new Date()) &&
-                    hour === dateFns.getHours(new Date()) && getSameHrContainer()}
+                    hour === dateFns.getHours(new Date()) &&
+                    getSameHrContainer()}
                   {mockEvents.map(e => {
                     return (
                       hour == e.startHr &&
@@ -67,7 +89,11 @@ class DayCalendarPresentation extends React.Component {
                             >
                               <div>
                                 <div className="event-container">
-                                  {buildEventCards(e.startHr, e.endHr, this.props.toggleModal)}
+                                  {buildEventCards(
+                                    e.startHr,
+                                    e.endHr,
+                                    this.props.toggleModal
+                                  )}
                                 </div>
                               </div>
                             </div>
@@ -90,12 +116,4 @@ class DayCalendarPresentation extends React.Component {
     );
   }
 }
-// const DayCalendarPresentation = ({ updateCurrentView }) => {
-
-//     updateCurrentView('DAY');
-//     return (
-//         <div className="day-calendar-container">{getRows()}
-//         </div>
-//     );
-// }
 export default DayCalendarPresentation;
