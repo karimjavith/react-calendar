@@ -1,3 +1,7 @@
+## Event calendar
+
+A basic google like event calendar built using react, redux, react-redux, redux-thunk and bootstrap
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
