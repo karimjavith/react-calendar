@@ -9,15 +9,14 @@ const mapStateToProps = state => {
     selectedDate: state.calendar.selectedDate
   };
 };
-const mapDispatchToProps = dispatch => ({
-  onDateClick: day => dispatch(onDateClick(day)),
-  nextMonth: dateFns => dispatch(nextMonth(dateFns)),
-  prevMonth: dateFns => dispatch(prevMonth(dateFns))
-});
-
+const actionCreators =  {
+  onDateClick,
+  nextMonth,
+  prevMonth
+};
 const MonthCalendarContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  actionCreators
 )(MonthCalendarPresentation);
 
 export default MonthCalendarContainer;

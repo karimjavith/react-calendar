@@ -10,14 +10,14 @@ const mapStateToPropsMyCalendar = (state) => {
 
     };
 };
-const mapDispatchToPropsMyCalendar = dispatch => ({
-    getCalendarTypeList: () => dispatch(getCalendarTypeList()),
-    toggleMyCalendarViewfn: () => dispatch(toggleMyCalendarViewfn())
 
-});
+const actionCreators =  {
+    getCalendarTypeList,
+    toggleMyCalendarViewfn
+};
 const MyCalendarContainer = connect(
     mapStateToPropsMyCalendar,
-    mapDispatchToPropsMyCalendar
+    actionCreators
 )(MyCalendarPresentation);
 
 export default MyCalendarContainer;

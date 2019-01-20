@@ -42,7 +42,7 @@ export const toggleMyCalendarViewfn = () => {
     type: "TOGGLE_MYCALENDAR_VIEW"
   };
 };
-export const initialState = {
+const initialState = {
   currentMonth: new Date(),
   selectedDate: new Date(),
   currentView: "DAY",
@@ -54,26 +54,28 @@ export const getCalendarTypeList = () => {
     type: BUILDING_CALENDAR_ACTIONS.GET_CALENDAR_TYPE_LIST
   };
 };
-
-const calendar = (state = initialState, action) => {
-  switch (action.type) {
-    case "DATE_CLICK":
+const calendar = {
+  initialState: initialState,
+  handlers: {
+    ["DATE_CLICK"]: (state, action) => {
       return {
         ...state,
         selectedDate: action.day
       };
-    case "NEXT_MONTH":
+    },
+    [BUILDING_CALENDAR_ACTIONS.NEXT_MONTH]: (state, action) => {
       return {
         ...state,
         currentMonth: action.dateFns.addMonths(state.currentMonth, 1)
       };
-
-    case "PREV_MONTH":
+    },
+    [BUILDING_CALENDAR_ACTIONS.PREV_MONTH]: (state, action) => {
       return {
         ...state,
         currentMonth: action.dateFns.subMonths(state.currentMonth, 1)
       };
-    case "MODIFY_DATE":
+    },
+    [BUILDING_CALENDAR_ACTIONS.MODIFY_DATE]: (state, action) => {
       let displayDate;
       if (state.currentView === "WEEK") {
         displayDate = action.dateFns.addDays(
@@ -87,12 +89,14 @@ const calendar = (state = initialState, action) => {
         selectedDate: displayDate,
         currentMonth: action.dateFns.format(displayDate)
       };
-    case "UPDATE_CURRENT_VIEW":
+    },
+    [BUILDING_CALENDAR_ACTIONS.UPDATE_CURRENT_VIEW]: (state, action) => {
       return {
         ...state,
         currentView: action.viewType
       };
-    case BUILDING_CALENDAR_ACTIONS.GET_CALENDAR_TYPE_LIST:
+    },
+    [BUILDING_CALENDAR_ACTIONS.GET_CALENDAR_TYPE_LIST]: (state, action) => {
       return {
         ...state,
         calendarTypes: {
@@ -101,13 +105,13 @@ const calendar = (state = initialState, action) => {
           3: "Calendar 3"
         }
       };
-    case "TOGGLE_MYCALENDAR_VIEW":
+    },
+    ["TOGGLE_MYCALENDAR_VIEW"]: (state, action) => {
       return {
         ...state,
         toggleCalendarView: !state.toggleCalendarView
       };
-    default:
-      return state;
+    }
   }
 };
 export default calendar;

@@ -47,20 +47,20 @@ class DayCalendarPresentation extends React.Component {
     const getRows = () => {
       const arr24 = Array(24).fill({});
       const mockCalendar = [
-        { "1": "Building notes" },
-        { "2": "Inspection" },
-        { "3": "Car Park" }
+        { "1": "Calendar 1" },
+        { "2": "Calendar 2" },
+        { "3": "Calendar 3" }
       ];
       const mockEvents = [
         {
           calendarId: "1",
-          eventsTitle: "Building notes",
+          eventsTitle: "Calendar 1",
           startHr: "09",
           endHr: "10"
         },
         {
-          calendarId: "3",
-          eventsTitle: "Car Park",
+          calendarId: "2",
+          eventsTitle: "Calendar 2",
           startHr: "02",
           endHr: "04"
         }

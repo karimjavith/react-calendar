@@ -268,7 +268,7 @@ main {
   border: 1px solid var(--border-color);
   margin-top: 1em;
   color: var(--text-color);
-  font-weight: 400;
+  font-weight: var(--font-weight-bolder);
   background: var(--white);
   font-size: 95%;
   .sub-content-container__header {
@@ -322,6 +322,7 @@ main {
   height: 700px;
   overflow: auto;
   font-size: 90%;
+  transition: all 0.25s ease-in 0.25s;
   .hour-container__bottom {
     border-top: 1px solid var(--border-color-dark);
     width: 90%;
@@ -591,6 +592,17 @@ main {
     }
   }
 }
+.modal-dialog {    
+  -webkit-animation: slideUp 1s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: slideUp 1s; /* Firefox < 16 */
+   -ms-animation: slideUp 1s; /* Internet Explorer */
+    -o-animation: slideUp 1s; /* Opera < 12.1 */
+       animation: slideUp 1s;
+       .modal-header {
+         background: #2ca18c;
+         color: var(--white);
+       }
+}
 
 .modal-body-content-container {
   margin-top: 0.5em;
@@ -628,6 +640,14 @@ main {
     text-align: center;
     margin: 2em;
     font-weight: var(--font-weight-bold);
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 @keyframes loader-container1 {

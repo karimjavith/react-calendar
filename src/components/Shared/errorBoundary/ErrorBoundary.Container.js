@@ -9,12 +9,12 @@ const mapStateToPropsErrorBoundary = state => {
     };
 };
 
-const mapDispatchToPropsErrorBoundary = dispatch => ({
-    throwErrorFromBoundary: errorObj => dispatch(throwErrorFromBoundary(errorObj))
-});
+const actionCreators = {
+    throwErrorFromBoundary
+};
 const ErrorBoundaryContainer = connect(
     mapStateToPropsErrorBoundary,
-    mapDispatchToPropsErrorBoundary
+    actionCreators
 )(ErrorBoundaryPresentation);
 
 export default ErrorBoundaryContainer;

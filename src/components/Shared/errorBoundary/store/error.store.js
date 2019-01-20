@@ -7,23 +7,21 @@ const ERROR_BOUNDARY = {
       errorObj
     }
   }
-  export const initialState = {
+ const initialState = {
     errorBoundary: {
       error: null,
       errorInfo: null
     }
   };
-  
-  const modal = (state = initialState, action) => {
-    switch (action.type) {
-      case ERROR_BOUNDARY.THROW_ERROR:
-      return {
-        ...state,
-        errorBoundary: action.errorObj
+  const error = {
+    initialState: initialState,
+    handlers: {
+      [ERROR_BOUNDARY.THROW_ERROR]: (state, action) => {
+        return {
+          ...state,
+          errorBoundary: action.errorObj}
       }
-      default:
-        return state;
     }
-  };
-  export default modal;
+  }
+  export default error;
   

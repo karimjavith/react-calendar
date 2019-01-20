@@ -11,13 +11,13 @@ const mapStateToPropsDayCalendar = state => {
   };
 };
 
-const mapDispatchToPropsDayCalendar = dispatch => ({
-  updateCurrentView: viewType => dispatch(updateCurrentView(viewType)),
-  toggleModal: (shouldShow, modalElement, elementPosition) => dispatch(toggleModal(shouldShow, modalElement, elementPosition))
-});
+const actionCreators = {
+  toggleModal,
+  updateCurrentView
+}
 const DayCalendarContainer = connect(
   mapStateToPropsDayCalendar,
-  mapDispatchToPropsDayCalendar
+  actionCreators
 )(DayCalendarPresentation);
 
 export default DayCalendarContainer;

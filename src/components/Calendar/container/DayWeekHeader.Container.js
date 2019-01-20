@@ -10,13 +10,13 @@ const mapStateToPropsForDayWeekHeader = state => {
     };
 };
 
-const mapDispatchToPropsDayWeekHeader = dispatch => ({
-    modifyDate: (dateFns, count) => dispatch(modifyDate(dateFns, count))
-});
+const actionCreators =  {
+    modifyDate
+};
 
 const DayWeekHeaderContainer = connect(
     mapStateToPropsForDayWeekHeader,
-    mapDispatchToPropsDayWeekHeader
+    actionCreators
 )(DayCalendarPresentation);
 
 export default DayWeekHeaderContainer;
