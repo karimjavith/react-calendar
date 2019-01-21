@@ -57,7 +57,7 @@ export const getCalendarTypeList = () => {
 const calendar = {
   initialState: initialState,
   handlers: {
-    ["DATE_CLICK"]: (state, action) => {
+    DATE_CLICK: (state, action) => {
       return {
         ...state,
         selectedDate: action.day
@@ -106,7 +106,7 @@ const calendar = {
         }
       };
     },
-    ["TOGGLE_MYCALENDAR_VIEW"]: (state, action) => {
+    TOGGLE_MYCALENDAR_VIEW: (state, action) => {
       return {
         ...state,
         toggleCalendarView: !state.toggleCalendarView

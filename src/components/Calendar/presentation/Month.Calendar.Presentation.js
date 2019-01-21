@@ -63,34 +63,33 @@ class CalendarPresentation extends React.Component {
       arr7 = Array(7).fill({});
 
     while (day <= endDate) {
-      days = arr7.map(() => {
-        day = dateFns.addDays(day, 1);
-        formattedDate = dateFns.format(day, dateFormat);
-        const cloneDay = day;
-        return (
-          <div
-            className={`col cell ${
-              !dateFns.isSameMonth(day, monthStart)
-                ? "disabled"
-                : dateFns.isSameDay(day, selectedDate)
-                  ? "selected"
-                  : ""
-              }`}
-            key={day}
-            onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
-          >
-            <span className="number" data-formatted={formattedDate}>
-              {formattedDate}
-            </span>
-          </div>
-        );
-      });
       rows.push(
         <div className="row" key={Math.random(day)}>
-          {days}
+          {arr7.map((v, i) => {
+            var currentDay = dateFns.addDays(day, i);
+            formattedDate = dateFns.format(currentDay, dateFormat);
+            return (
+              <div
+                className={`col cell ${
+                  !dateFns.isSameMonth(currentDay, monthStart)
+                    ? "disabled"
+                    : dateFns.isSameDay(currentDay, selectedDate)
+                      ? "selected"
+                      : ""
+                  }`}
+                key={Math.random(i)}
+                onClick={() => this.onDateClick(dateFns.parse(currentDay))}
+              >
+                <span className="number" data-formatted={formattedDate}>
+                  {formattedDate}
+                </span>
+              </div>
+            );
+          })}
         </div>
       );
       arr7 = Array(7).fill({});
+      day = dateFns.addDays(day, 7);
     }
     return <div className="body">{rows}</div>;
   }
