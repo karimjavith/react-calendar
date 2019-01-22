@@ -2,10 +2,10 @@ import React from "react";
 import LoaderPresentation from "../../Shared/Loader.Presentation";
 class MyCalendarPresentation extends React.Component {
   componentDidMount() {
-    this.props.getCalendarTypeList();
+    this.props.getCalendarTypeList(new Date(), new Date(), new Date(), new Date());
   }
   render() {
-    const { calendarTypes } = this.props;
+    const { calendarTypes, isLoading, isError } = this.props;
     return (
       <div className="my-calendar-container">
         <div className="my-calendar-container__header">
@@ -15,7 +15,8 @@ class MyCalendarPresentation extends React.Component {
         </div>
 
         <div className="my-calendar-container__list-container">
-          <ul className="my-calendar-container__list row">
+          {isLoading && <LoaderPresentation></LoaderPresentation>}
+          {!isLoading && !isError && <ul className="my-calendar-container__list row">
             {Object.keys(calendarTypes).map(key => {
               {/* {calendarTypes.map(key => { */ }
               return (
@@ -41,7 +42,7 @@ class MyCalendarPresentation extends React.Component {
                 </li>
               );
             })}
-          </ul>
+          </ul>}
         </div>
       </div>
     );

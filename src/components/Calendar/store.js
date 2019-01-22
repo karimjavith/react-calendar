@@ -1,16 +1,24 @@
-const BUILDING_CALENDAR_ACTIONS = {
+const CALENDAR_ACTIONS = {
   SELECT_DATE: "SELECT_DATE",
   NEXT_MONTH: "NEXT_MONTH",
   PREV_MONTH: "PREV_MONTH",
   MODIFY_DATE: "MODIFY_DATE",
   UPDATE_CURRENT_VIEW: "UPDATE_CURRENT_VIEW",
-  GET_CALENDAR_TYPE_LIST: "GET_CALENDAR_TYPE_LIST"
+  GET_CALENDAR_TYPE_LIST: "GET_CALENDAR_TYPE_LIST",
+  REQ_IN_PROGRESS: "REQ_IN_PROGRESS",
+  REQ_COMPLETED: "REQ_COMPLETED",
+  ERROR_RESPONSE: "ERROR_RESPONSE"
 };
-export const onDateClick = day => {
-  return {
+export const onDateClick = (start, end, selectedDate) => dispatch => {
+  // return {
+  //   type: "DATE_CLICK",
+  //   day
+  // };
+  dispatch({
     type: "DATE_CLICK",
-    day
-  };
+    selectedDate
+  });
+  dispatch(getCalendarTypeList(start, end));
 };
 export const nextMonth = dateFns => {
   return {
@@ -42,17 +50,53 @@ export const toggleMyCalendarViewfn = () => {
     type: "TOGGLE_MYCALENDAR_VIEW"
   };
 };
+export const requestInProgress = () => {
+  return {
+    type: CALENDAR_ACTIONS.REQ_IN_PROGRESS
+  };
+};
+export const reqCompleted = (content) => {
+  return {
+    type: CALENDAR_ACTIONS.REQ_COMPLETED,
+    content
+  };
+};
+export const errorResponse = (error) => {
+  return {
+    type: CALENDAR_ACTIONS.ERROR_RESPONSE,
+    error
+  };
+};
 const initialState = {
   currentMonth: new Date(),
   selectedDate: new Date(),
   currentView: "DAY",
   toggleCalendarView: undefined,
-  calendarTypes: {}
+  calendarTypes: {},
+  isFetching: false,
+  isError: false,
+  errorObj: {}
 };
-export const getCalendarTypeList = () => {
-  return {
-    type: BUILDING_CALENDAR_ACTIONS.GET_CALENDAR_TYPE_LIST
-  };
+export const getCalendarTypeList = (startDate, endDate) => dispatch => {
+  debugger;
+  dispatch(requestInProgress());
+  var promiseObj = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("success")
+    }, 1000)
+  })
+
+  return promiseObj.then(() => {
+
+    dispatch(reqCompleted({
+      1: "Calendar 1",
+      2: "Calendar 2",
+      3: "Calendar 3"
+    }))
+  }).catch((error) => {
+    dispatch(errorResponse(error))
+  })
+
 };
 const calendar = {
   initialState: initialState,
@@ -63,19 +107,19 @@ const calendar = {
         selectedDate: action.day
       };
     },
-    [BUILDING_CALENDAR_ACTIONS.NEXT_MONTH]: (state, action) => {
+    [CALENDAR_ACTIONS.NEXT_MONTH]: (state, action) => {
       return {
         ...state,
         currentMonth: action.dateFns.addMonths(state.currentMonth, 1)
       };
     },
-    [BUILDING_CALENDAR_ACTIONS.PREV_MONTH]: (state, action) => {
+    [CALENDAR_ACTIONS.PREV_MONTH]: (state, action) => {
       return {
         ...state,
         currentMonth: action.dateFns.subMonths(state.currentMonth, 1)
       };
     },
-    [BUILDING_CALENDAR_ACTIONS.MODIFY_DATE]: (state, action) => {
+    [CALENDAR_ACTIONS.MODIFY_DATE]: (state, action) => {
       let displayDate;
       if (state.currentView === "WEEK") {
         displayDate = action.dateFns.addDays(
@@ -90,13 +134,13 @@ const calendar = {
         currentMonth: action.dateFns.format(displayDate)
       };
     },
-    [BUILDING_CALENDAR_ACTIONS.UPDATE_CURRENT_VIEW]: (state, action) => {
+    [CALENDAR_ACTIONS.UPDATE_CURRENT_VIEW]: (state, action) => {
       return {
         ...state,
         currentView: action.viewType
       };
     },
-    [BUILDING_CALENDAR_ACTIONS.GET_CALENDAR_TYPE_LIST]: (state, action) => {
+    [CALENDAR_ACTIONS.GET_CALENDAR_TYPE_LIST]: (state, action) => {
       return {
         ...state,
         calendarTypes: {
@@ -111,6 +155,26 @@ const calendar = {
         ...state,
         toggleCalendarView: !state.toggleCalendarView
       };
+    },
+    [CALENDAR_ACTIONS.REQ_IN_PROGRESS]: (state, action) => {
+      return {
+        ...state,
+        isFetching: true
+      }
+    },
+    [CALENDAR_ACTIONS.REQ_COMPLETED]: (state, action) => {
+      return {
+        ...state,
+        isFetching: false,
+        calendarTypes: action.content
+      }
+    },
+    [CALENDAR_ACTIONS.ERROR_RESPONSE]: (state, action) => {
+      return {
+        ...state,
+        isError: true,
+        errorObj: action.error
+      }
     }
   }
 };

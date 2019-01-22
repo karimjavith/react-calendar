@@ -78,7 +78,7 @@ class CalendarPresentation extends React.Component {
                       : ""
                   }`}
                 key={Math.random(i)}
-                onClick={() => this.onDateClick(dateFns.parse(currentDay))}
+                onClick={() => this.onDateClick("", "", dateFns.parse(currentDay))}
               >
                 <span className="number" data-formatted={formattedDate}>
                   {formattedDate}
@@ -94,7 +94,7 @@ class CalendarPresentation extends React.Component {
     return <div className="body">{rows}</div>;
   }
 
-  onDateClick = day => {
+  onDateClick = (s, d, day) => {
     this.props.onDateClick(day);
   };
 

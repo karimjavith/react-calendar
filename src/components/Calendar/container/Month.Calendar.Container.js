@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { onDateClick, prevMonth, nextMonth } from "../store";
+import {  prevMonth, nextMonth, onDateClick } from "../store";
 import MonthCalendarPresentation from "../presentation/Month.Calendar.Presentation";
 
 const mapStateToProps = state => {
@@ -10,9 +10,9 @@ const mapStateToProps = state => {
   };
 };
 const actionCreators =  {
-  onDateClick,
   nextMonth,
-  prevMonth
+  prevMonth,
+  onDateClick
 };
 const MonthCalendarContainer = connect(
   mapStateToProps,
