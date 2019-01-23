@@ -68,6 +68,7 @@ class CalendarPresentation extends React.Component {
           {arr7.map((v, i) => {
             var currentDay = dateFns.addDays(day, i);
             formattedDate = dateFns.format(currentDay, dateFormat);
+            const cloneDay = currentDay;
             return (
               <div
                 className={`col cell ${
@@ -78,7 +79,7 @@ class CalendarPresentation extends React.Component {
                       : ""
                   }`}
                 key={Math.random(i)}
-                onClick={() => this.onDateClick("", "", dateFns.parse(currentDay))}
+                onClick={() => this.onDateClick("", "", dateFns.parse(cloneDay))}
               >
                 <span className="number" data-formatted={formattedDate}>
                   {formattedDate}
@@ -95,7 +96,7 @@ class CalendarPresentation extends React.Component {
   }
 
   onDateClick = (s, d, day) => {
-    this.props.onDateClick(day);
+    this.props.onDateClick(s, d, day);
   };
 
   nextMonth = () => {

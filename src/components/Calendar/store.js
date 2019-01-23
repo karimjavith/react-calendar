@@ -10,12 +10,8 @@ const CALENDAR_ACTIONS = {
   ERROR_RESPONSE: "ERROR_RESPONSE"
 };
 export const onDateClick = (start, end, selectedDate) => dispatch => {
-  // return {
-  //   type: "DATE_CLICK",
-  //   day
-  // };
   dispatch({
-    type: "DATE_CLICK",
+    type: CALENDAR_ACTIONS.SELECT_DATE,
     selectedDate
   });
   dispatch(getCalendarTypeList(start, end));
@@ -78,7 +74,6 @@ const initialState = {
   errorObj: {}
 };
 export const getCalendarTypeList = (startDate, endDate) => dispatch => {
-  debugger;
   dispatch(requestInProgress());
   var promiseObj = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -101,10 +96,10 @@ export const getCalendarTypeList = (startDate, endDate) => dispatch => {
 const calendar = {
   initialState: initialState,
   handlers: {
-    DATE_CLICK: (state, action) => {
+    [CALENDAR_ACTIONS.SELECT_DATE]: (state, action) => {
       return {
         ...state,
-        selectedDate: action.day
+        selectedDate: action.selectedDate
       };
     },
     [CALENDAR_ACTIONS.NEXT_MONTH]: (state, action) => {
@@ -159,7 +154,8 @@ const calendar = {
     [CALENDAR_ACTIONS.REQ_IN_PROGRESS]: (state, action) => {
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        selectedDate: state.selectedDate
       }
     },
     [CALENDAR_ACTIONS.REQ_COMPLETED]: (state, action) => {
