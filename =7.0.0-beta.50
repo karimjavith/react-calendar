@@ -1,0 +1,2 @@
+[1minstall-peerdeps v1.10.2[22m
+[1m[31mERR[39m[22m The package you are trying to install has no peer dependencies. Use yarn or npm to install it manually.

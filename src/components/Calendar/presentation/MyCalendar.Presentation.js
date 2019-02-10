@@ -6,6 +6,7 @@ class MyCalendarPresentation extends React.Component {
   }
   render() {
     const { calendarTypes, isLoading, isError } = this.props;
+    console.log(this.props);
     return (
       <div className="my-calendar-container">
         <div className="my-calendar-container__header">

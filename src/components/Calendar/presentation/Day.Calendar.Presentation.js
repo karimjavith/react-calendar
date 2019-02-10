@@ -1,5 +1,6 @@
 import React from "react";
 import dateFns from "date-fns";
+import LoaderPresentation from "../../Shared/Loader.Presentation";
 const buildEventCards = (startPoint, endPoint, toggleFn) => {
   const styleElements = {
     top: `${(parseInt(startPoint) + 1) * 40}px`,
@@ -37,6 +38,7 @@ class DayCalendarPresentation extends React.Component {
     this.props.updateCurrentView("DAY");
   }
   render() {
+    const {isLoading} = this.props;
     const getSameHrContainer = () => {
       const getMin = dateFns.getMinutes(new Date());
       const topPosition = getMin < 30 ? "20px" : "30px";
@@ -111,7 +113,8 @@ class DayCalendarPresentation extends React.Component {
     };
     return (
       <div className="day-calendar-container">
-        <div className="one">{getRows()}</div>
+        {isLoading && <LoaderPresentation></LoaderPresentation>}
+        {!isLoading && <div className="one">{getRows()}</div>}
       </div>
     );
   }

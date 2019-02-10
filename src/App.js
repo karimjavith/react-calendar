@@ -10,7 +10,7 @@ import DayWeekHeaderContainer from "./components/Calendar/container/DayWeekHeade
 import MyCalendarContainer from "./components/Calendar/container/MyCalendar.Container";
 import ErrorBoundaryContainer from "./components/Shared/errorBoundary/ErrorBoundary.Container";
 import ModalContainer from "./components/Shared/modal/modal.container";
-import "./App.scss";
+// import "./App.scss";
 
 const store = configureStore();
 class App extends Component {
