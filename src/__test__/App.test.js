@@ -80,6 +80,6 @@ test("should render <App /> component with day view for smaller devices", async 
   });
   await wait().then(jest.runOnlyPendingTimers());
   expect(
-    container.querySelectorAll(".day-calendar-container")
+    container.querySelector(".day-calendar-container")
   ).toMatchSnapshot();
 });

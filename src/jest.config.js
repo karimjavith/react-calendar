@@ -1,6 +1,10 @@
 const { defaults } = require("jest-config");
 module.exports = {
-  // setupTestFrameworkScriptFile: require.resolve("./jest.setup.js"),
+  setupFilesAfterEnv: [
+    "babel-polyfill",
+    "react-testing-library/cleanup-after-each"
+    // ... other setup files ...
+  ],
   moduleFileExtensions: [...defaults.moduleFileExtensions, "ts", "tsx"],
   collectCoverageFrom: [
     "**/*.{js,jsx}",
@@ -30,4 +34,6 @@ module.exports = {
   },
   timers: "fake",
   verbose: true,
+  testMatch: ["<rootDir>/**/*.test.js"],
+  snapshotSerializers: ['jss-snapshot-serializer'],
 };
