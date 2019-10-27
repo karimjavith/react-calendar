@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { Card, Modal, Button, Form, Col } from 'react-bootstrap';
 const initialState = {
   open: false
 };
 
-interface IEventProps {
+type EventProps = {
   width: string | number;
   details: any;
-}
+};
 
-export const Event = ({ details, width }: IEventProps) => {
+export const Event = ({ details, width }: EventProps) => {
   const [state, setstate] = useState(initialState);
   const startPoint = details.startTime.replace(':', '.');
   const endPoint = details.endTime.replace(':', '.');
@@ -35,28 +34,29 @@ export const Event = ({ details, width }: IEventProps) => {
   };
   return (
     <>
-      <Card
-        role="button"
+      <div
         onClick={() => setstate({ open: true })}
         style={styleElements}
-        className="event-card"
-        bg="dark"
+        className="rdc-container__row__column__event"
       >
-        <Card.Body
+        <div
+          className="rdc-container__row__column__event__content"
           style={{
             padding: details.duration < 60 ? '0.6rem' : '1rem',
             fontSize: details.duration < 60 ? '0.8rem' : '1rem',
             color: '#fff'
           }}
         >
-          <Card.Subtitle>{details.eventsTitle}</Card.Subtitle>
+          <div className="rdc-container__row__column__event__container__title">
+            {details.eventsTitle}
+          </div>
 
-          <Card.Text>{`${details.startTime} - ${
-            details.endTime
-          } Hrs`}</Card.Text>
-        </Card.Body>
-      </Card>
-      {state.open && (
+          <div className="rdc-container__row__column__event__container__body">{`${
+            details.startTime
+          } - ${details.endTime} Hrs`}</div>
+        </div>
+      </div>
+      {/* {state.open && (
         <Modal
           animation={false}
           show={true}
@@ -104,7 +104,7 @@ export const Event = ({ details, width }: IEventProps) => {
             <Button onClick={() => setstate({ open: false })}>Close</Button>
           </Modal.Footer>
         </Modal>
-      )}
+      )} */}
     </>
   );
 };

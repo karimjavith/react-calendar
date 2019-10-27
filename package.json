@@ -14,7 +14,6 @@
     "prop-types": "^15.7.2",
     "react": "^16.7.0",
     "react-big-calendar": "^0.20.2",
-    "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.7.0",
     "react-media": "^1.9.2",
     "react-redux": "^6.0.0",

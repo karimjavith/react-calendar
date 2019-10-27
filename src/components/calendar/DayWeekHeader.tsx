@@ -1,6 +1,6 @@
 import React from 'react';
 import dateFns from 'date-fns';
-import { ListGroup, Button, Container } from 'react-bootstrap';
+
 type DayWeekHeader = {
   selectedDate: any;
   changeDate: (by: number) => void;
@@ -8,30 +8,33 @@ type DayWeekHeader = {
 const DayWeekHeader = (props: DayWeekHeader) => {
   const title = `${dateFns.format(props.selectedDate, 'DD MMM YYYY')}`;
   return (
-    <Container fluid className="dayWeekHeader">
-      <div>
-        <Button block variant="success" onClick={() => props.changeDate(0)}>
+    <div className="rdc-container__header">
+      <div className="rdc-container__header__group">
+        <button
+          className="rdc-container__btn rdc-container__btn--today"
+          onClick={() => props.changeDate(0)}
+        >
           Today
-        </Button>
+        </button>
       </div>
-      <div>
-        <ListGroup.Item
-          role="button"
+      <div className="rdc-container__header__group">
+        <span
+          className="rdc-container__header__group__item"
           style={{ cursor: 'pointer' }}
           onClick={() => props.changeDate(-1)}
         >
           <i className="icon ion-md-arrow-dropleft" />
-        </ListGroup.Item>
-        <ListGroup.Item>{title}</ListGroup.Item>
-        <ListGroup.Item
-          role="button"
+        </span>
+        <span className="rdc-container__header__group__item">{title}</span>
+        <span
+          className="rdc-container__header__group__item"
           style={{ cursor: 'pointer' }}
           onClick={() => props.changeDate(1)}
         >
           <i className="icon ion-md-arrow-dropright" />
-        </ListGroup.Item>
+        </span>
       </div>
-    </Container>
+    </div>
   );
 };
 

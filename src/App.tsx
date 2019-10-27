@@ -23,7 +23,7 @@ const App = (props: AppProps) => {
     });
   };
   return (
-    <Container fluid style={{ padding: 0, margin: 0 }}>
+    <div className="rdc-container">
       <DayWeekHeader
         selectedDate={state.selectedDate}
         changeDate={changeDate}
@@ -33,7 +33,7 @@ const App = (props: AppProps) => {
         isLoading={props.isLoading}
         selectedDate={state.selectedDate}
       />
-    </Container>
+    </div>
   );
 };
 App.displayName = 'Day Calendar';
