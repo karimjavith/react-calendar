@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import dateFns from 'date-fns';
-import { Container } from 'react-bootstrap';
-import DayWeekHeader from './components/calendar/DayWeekHeader';
-import Day from './components/calendar/day/index';
-import './App.scss';
+import React, { useState } from "react";
+import dateFns from "date-fns";
+import DayWeekHeader from "./components/calendar/DayWeekHeader";
+import Day from "./components/calendar/day/index";
+import "./App.scss";
+import { Events } from "./type";
 type AppProps = {
-  selectedDate: any;
-  events: any[];
+  selectedDate: string | Date;
+  events: Events[];
   isLoading: boolean;
 };
 const App = (props: AppProps) => {
@@ -36,5 +36,5 @@ const App = (props: AppProps) => {
     </div>
   );
 };
-App.displayName = 'Day Calendar';
+App.displayName = "Day Calendar";
 export default App;
