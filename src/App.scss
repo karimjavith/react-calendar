@@ -91,7 +91,12 @@
         }
       }
       &__event {
+        &__content {
+          padding: 0.5rem;
+        }
         position: absolute;
+        border-radius: 6px;
+        opacity: 0.8;
       }
     }
   }
