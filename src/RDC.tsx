@@ -4,13 +4,9 @@ import dateFns from "date-fns";
 import DayWeekHeader from "./components/calendar/DayWeekHeader";
 import Day from "./components/calendar/day/index";
 import "./App.scss";
-import { Events } from "./type";
-type AppProps = {
-  selectedDate: string | Date;
-  events: Events[];
-  isLoading: boolean;
-};
-const App = (props: AppProps) => {
+import { RDCProps } from "./type";
+
+const RDC = (props: RDCProps) => {
   const initialState = {
     selectedDate: props.selectedDate
   };
@@ -28,13 +24,9 @@ const App = (props: AppProps) => {
         selectedDate={state.selectedDate}
         changeDate={changeDate}
       />
-      <Day
-        events={props.events}
-        isLoading={props.isLoading}
-        selectedDate={state.selectedDate}
-      />
+      <Day events={props.events} selectedDate={state.selectedDate} />
     </div>
   );
 };
-App.displayName = "Day Calendar";
-export default App;
+RDC.displayName = "React Day Calendar";
+export default RDC;

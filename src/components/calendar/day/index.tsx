@@ -1,4 +1,5 @@
 import React from "react";
+import dateFns from "date-fns";
 import Loader from "../../shared/Loader";
 import { Rows } from "./Rows";
 import { EventWithStyles, DayProps } from "../../../type";
@@ -9,10 +10,16 @@ const Day = (props: DayProps) => {
     [key: string]: EventWithStyles[];
   }>({});
   const [eventLoadingState, setEventLoadingState] = React.useState(true);
+  const [selectedDate, setSelectedDate] = React.useState(props.selectedDate);
+
   React.useEffect(() => {
-    if (eventLoadingState) {
+    if (eventLoadingState || props.selectedDate !== selectedDate) {
       let hourCount: { [key: string]: number } = {};
-      const updatedEvents = props.events.map(ev => {
+      const currentDayEvents = props.events.filter(ev =>
+        dateFns.isSameDay(props.selectedDate, ev.eventDate)
+      );
+
+      const updatedEvents = currentDayEvents.map(ev => {
         const hour = ev.startTime.slice(0, 2);
         const elm = document.getElementById(`rdc-${hour}`);
         hourCount = {
@@ -27,20 +34,25 @@ const Day = (props: DayProps) => {
         };
       });
       setstate({ ...state, events: updatedEvents });
+      setSelectedDate(props.selectedDate);
       setEventLoadingState(false);
     }
-  }, [eventLoadingState, props.events, state]);
+  }, [
+    eventLoadingState,
+    props.events,
+    props.selectedDate,
+    selectedDate,
+    state
+  ]);
   return (
     <>
-      {props.isLoading && <Loader />}
-      {!props.isLoading && <Rows selectedDate={props.selectedDate} />}
+      {eventLoadingState && <Loader />}
+      <Rows selectedDate={props.selectedDate} />
       <div style={{ position: "absolute", left: 0, right: 0, top: 0 }}>
         <div style={{ position: "relative", width: "100%", height: "100%" }}>
-          {!props.isLoading &&
-            state.events &&
-            state.events.map(event => (
-              <Event key={event.startTime + event.eventsTitle} {...event} />
-            ))}
+          {!eventLoadingState &&
+            state.events.length > 0 &&
+            state.events.map(event => <Event key={event.eventId} {...event} />)}
         </div>
       </div>
     </>

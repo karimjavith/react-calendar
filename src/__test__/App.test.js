@@ -2,11 +2,7 @@
 import React from "react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import {
-  render,
-  cleanup,
-  wait,
-} from "react-testing-library";
+import { render, cleanup, wait } from "react-testing-library";
 import {
   createHistory,
   createMemorySource,
@@ -15,7 +11,7 @@ import {
 import "jest-dom/extend-expect";
 import { reducer } from "../__mocks__/reducer";
 import { mockMatchMedia } from "../__mocks__/matchMedia";
-import App from "../App";
+import App from "../RDC";
 
 function renderWithReduxAndRouter(
   ui,
@@ -79,7 +75,5 @@ test("should render <App /> component with day view for smaller devices", async 
     }
   });
   await wait().then(jest.runOnlyPendingTimers());
-  expect(
-    container.querySelector(".day-calendar-container")
-  ).toMatchSnapshot();
+  expect(container.querySelector(".day-calendar-container")).toMatchSnapshot();
 });

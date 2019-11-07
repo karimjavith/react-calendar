@@ -17,7 +17,7 @@ export const Event = (props: EventWithStyles) => {
     zIndex: 999 + props.order,
     top: props.top,
     left: props.left * props.order,
-    marginRight: "1rem",
+    marginRight: "1rem"
   };
   return (
     <div style={styleElements} className="rdc-container__row__column__event">

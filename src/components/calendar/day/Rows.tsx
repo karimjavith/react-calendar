@@ -2,7 +2,7 @@ import React from "react";
 import { EventContainer } from "./EventContainer";
 
 type RowsProps = {
-  selectedDate: any;
+  selectedDate: string | Date;
 };
 export const Rows = (props: RowsProps) => {
   const arr24 = Array(24).fill({});
