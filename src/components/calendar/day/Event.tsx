@@ -1,11 +1,13 @@
 import React from "react";
-import { Events, EventWithStyles } from "../../../type";
+import { TEvent, EventWithStyles, RDCContextType } from "../../../type";
+import { RDCContext } from "../../..";
 
 type EventProps = {
-  item: Events;
+  item: TEvent;
 };
 
 export const Event = (props: EventWithStyles) => {
+  const { onEventClickCb } = React.useContext<RDCContextType>(RDCContext);
   const width = `calc((100% - ${props.left + 16}px)/${props.order})`;
   const styleElements = {
     overflow: "hidden",
@@ -20,7 +22,14 @@ export const Event = (props: EventWithStyles) => {
     marginRight: "1rem"
   };
   return (
-    <div style={styleElements} className="rdc-container__row__column__event">
+    <div
+      style={styleElements}
+      role="button"
+      className="rdc-container__row__column__event"
+      onClick={() => {
+        onEventClickCb({ ...props });
+      }}
+    >
       <div className="rdc-container__row__column__event__content">
         <div className="rdc-container__row__column__event__container__title">
           {props.eventsTitle}

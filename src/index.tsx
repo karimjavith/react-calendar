@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import RDC from "./RDC";
 import * as serviceWorker from "./serviceWorker";
-import { Events, RDCRootProps } from "./type";
+import { TEvent, RDCRootProps, RDCContextType } from "./type";
 
 const addDays = (date: string | Date, days: number) => {
   const result = new Date(date);
@@ -11,7 +11,7 @@ const addDays = (date: string | Date, days: number) => {
   return result;
 };
 
-const events: Events[] = [
+const events: TEvent[] = [
   {
     eventId: Math.random(),
     eventsTitle: "Calendar 1",
@@ -134,19 +134,26 @@ const props: RDCRootProps = {
   events,
   isLoading: false,
   selectedDate: new Date(),
-  systemDate: new Date()
-};
-export const RDCContext = React.createContext<{ [key: string]: string | Date }>(
-  {
-    systemDate: new Date() // default value
+  systemDate: new Date(),
+  onEventClickCb: (events: TEvent) => {
+    console.log(events);
   }
-);
-ReactDOM.render(
-  <RDCContext.Provider value={{ systemDate: props.systemDate }}>
-    <RDC {...props} />
-  </RDCContext.Provider>,
-  document.getElementById("root")
-);
+};
+export const RDCContext = React.createContext<RDCContextType>(null);
+const RDCContainer = (props: RDCRootProps) => {
+  const memoisedContextValue = React.useMemo(() => {
+    return {
+      systemDate: props.systemDate,
+      onEventClickCb: props.onEventClickCb
+    };
+  }, [props.onEventClickCb, props.systemDate]);
+  return (
+    <RDCContext.Provider value={memoisedContextValue}>
+      <RDC {...props} />
+    </RDCContext.Provider>
+  );
+};
+ReactDOM.render(<RDCContainer {...props} />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

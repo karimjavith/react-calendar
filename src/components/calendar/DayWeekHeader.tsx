@@ -1,11 +1,8 @@
 import React from "react";
 import dateFns from "date-fns";
+import { TDayWeekHeader } from "../../type";
 
-type DayWeekHeader = {
-  selectedDate: any;
-  changeDate: (by: number) => void;
-};
-const DayWeekHeader = (props: DayWeekHeader) => {
+const DayWeekHeader = (props: TDayWeekHeader) => {
   const title = `${dateFns.format(props.selectedDate, "DD MMM YYYY")}`;
   return (
     <div className="rdc-container__header">

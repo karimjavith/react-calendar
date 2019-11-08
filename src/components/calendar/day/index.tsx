@@ -5,19 +5,29 @@ import { Rows } from "./Rows";
 import { EventWithStyles, DayProps } from "../../../type";
 import { Event } from "./Event";
 
-const Day = (props: DayProps) => {
-  const [state, setstate] = React.useState<{
-    [key: string]: EventWithStyles[];
-  }>({});
-  const [eventLoadingState, setEventLoadingState] = React.useState(true);
-  const [selectedDate, setSelectedDate] = React.useState(props.selectedDate);
+type DayState = {
+  event: EventWithStyles[];
+  eventLoading: boolean;
+  selectedDate: string | Date;
+};
 
-  React.useEffect(() => {
-    if (eventLoadingState || props.selectedDate !== selectedDate) {
-      let hourCount: { [key: string]: number } = {};
-      const currentDayEvents = props.events.filter(ev =>
+const Day = (props: DayProps) => {
+  const [state, setstate] = React.useState<DayState>({
+    event: [],
+    eventLoading: true,
+    selectedDate: props.selectedDate
+  });
+  const currentDayEvents = React.useMemo(
+    () =>
+      props.events.filter(ev =>
         dateFns.isSameDay(props.selectedDate, ev.eventDate)
-      );
+      ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [props.selectedDate]
+  );
+  React.useEffect(() => {
+    if (state.eventLoading || props.selectedDate !== state.selectedDate) {
+      let hourCount: { [key: string]: number } = {};
 
       const updatedEvents = currentDayEvents.map(ev => {
         const hour = ev.startTime.slice(0, 2);
@@ -33,26 +43,23 @@ const Day = (props: DayProps) => {
           order: hourCount[hour]
         };
       });
-      setstate({ ...state, events: updatedEvents });
-      setSelectedDate(props.selectedDate);
-      setEventLoadingState(false);
+      setstate({
+        ...state,
+        event: updatedEvents,
+        selectedDate: props.selectedDate,
+        eventLoading: false
+      });
     }
-  }, [
-    eventLoadingState,
-    props.events,
-    props.selectedDate,
-    selectedDate,
-    state
-  ]);
+  }, [currentDayEvents, props.events, props.selectedDate, state]);
   return (
     <>
-      {eventLoadingState && <Loader />}
+      {state.eventLoading && <Loader />}
       <Rows selectedDate={props.selectedDate} />
       <div style={{ position: "absolute", left: 0, right: 0, top: 0 }}>
         <div style={{ position: "relative", width: "100%", height: "100%" }}>
-          {!eventLoadingState &&
-            state.events.length > 0 &&
-            state.events.map(event => <Event key={event.eventId} {...event} />)}
+          {!state.eventLoading &&
+            state.event.length > 0 &&
+            state.event.map(event => <Event key={event.eventId} {...event} />)}
         </div>
       </div>
     </>
