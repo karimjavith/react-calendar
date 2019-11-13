@@ -1,25 +1,21 @@
-import React from "react";
-import { TEvent, EventWithStyles, RDCContextType } from "../../../type";
-import { RDCContext } from "../../..";
-
-type EventProps = {
-  item: TEvent;
-};
+import React from 'react';
+import { EventWithStyles, RDCContextType } from '../../../type';
+import { RDCContext } from '../../..';
 
 export const Event = (props: EventWithStyles) => {
   const { onEventClickCb } = React.useContext<RDCContextType>(RDCContext);
   const width = `calc((100% - ${props.left + 16}px)/${props.order})`;
   const styleElements = {
-    overflow: "hidden",
-    cursor: "pointer",
-    display: "flex",
-    background: "#000",
-    color: "#fff",
+    overflow: 'hidden',
+    cursor: 'pointer',
+    display: 'flex',
+    background: '#333335',
+    color: '#fff',
     width,
     zIndex: 999 + props.order,
     top: props.top,
-    left: props.left * props.order,
-    marginRight: "1rem"
+    left: `${props.order * props.left}px`,
+    marginRight: '1rem'
   };
   return (
     <div

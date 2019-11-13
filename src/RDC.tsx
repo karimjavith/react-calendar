@@ -1,32 +1,17 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
-import dateFns from "date-fns";
-import DayWeekHeader from "./components/calendar/DayWeekHeader";
-import Day from "./components/calendar/day/index";
-import "./App.scss";
-import { RDCProps } from "./type";
+import React from 'react';
+import Column from './components/calendar/column/index';
+import './App.scss';
+import { RDCProps } from './type';
+import { Rows } from './components/calendar/Rows';
 
 const RDC = (props: RDCProps) => {
-  const initialState = {
-    selectedDate: props.selectedDate
-  };
-  const [state, setstate] = useState(initialState);
-  const changeDate = (by: number) => {
-    setstate({
-      ...state,
-      selectedDate:
-        by !== 0 ? dateFns.addDays(state.selectedDate, by) : props.selectedDate
-    });
-  };
   return (
     <div className="rdc-container">
-      <DayWeekHeader
-        selectedDate={state.selectedDate}
-        changeDate={changeDate}
-      />
-      <Day events={props.events} selectedDate={state.selectedDate} />
+      <Column events={props.events} selectedDate={props.selectedDate} />
+      <Rows />
     </div>
   );
 };
-RDC.displayName = "React Day Calendar";
+RDC.displayName = 'React Day Calendar';
 export default RDC;

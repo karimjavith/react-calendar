@@ -18,7 +18,7 @@ export type DayProps = {
   events: TEvent[];
 };
 
-export type TDayWeekHeader = {
+export type THeader = {
   selectedDate: string | Date;
   changeDate: (by: number) => void;
 };

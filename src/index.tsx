@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import RDC from "./RDC";
-import * as serviceWorker from "./serviceWorker";
-import { TEvent, RDCRootProps, RDCContextType } from "./type";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import RDC from './RDC';
+import * as serviceWorker from './serviceWorker';
+import { TEvent, RDCRootProps, RDCContextType } from './type';
 
 const addDays = (date: string | Date, days: number) => {
   const result = new Date(date);
@@ -13,125 +13,63 @@ const addDays = (date: string | Date, days: number) => {
 
 const events: TEvent[] = [
   {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 1",
+    eventId: 1001,
+    eventsTitle: 'Calendar 1',
     eventDate: new Date(),
-    startTime: "09:40",
-    endTime: "10:15",
+    startTime: '09:40',
+    endTime: '10:15',
     duration: 45,
-    color: "#C13458"
+    color: '#C13458'
   },
   {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 4",
+    eventId: 1002,
+    eventsTitle: 'Calendar 4',
     eventDate: new Date(),
-    startTime: "09:30",
-    endTime: "10:15",
+    startTime: '09:30',
+    endTime: '10:15',
     duration: 45,
-    color: "#C13451"
+    color: '#C13451'
   },
   {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 5",
+    eventId: 1003,
+    eventsTitle: 'Calendar 5',
     eventDate: new Date(),
-    startTime: "09:30",
-    endTime: "10:15",
+    startTime: '09:30',
+    endTime: '10:15',
     duration: 45,
-    color: "#C13451"
+    color: '#C13451'
   },
   {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 6",
+    eventId: 1004,
+    eventsTitle: 'Calendar 6',
     eventDate: new Date(),
-    startTime: "09:30",
-    endTime: "10:15",
+    startTime: '09:30',
+    endTime: '10:15',
     duration: 45,
-    color: "#C13451"
+    color: '#C13451'
   },
   {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 7",
+    eventId: 1005,
+    eventsTitle: 'Calendar 7',
     eventDate: new Date(),
-    startTime: "09:30",
-    endTime: "10:15",
+    startTime: '09:30',
+    endTime: '10:15',
     duration: 45,
-    color: "#C13451"
-  },
-  {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 8",
-    eventDate: new Date(),
-    startTime: "09:30",
-    endTime: "10:15",
-    duration: 45,
-    color: "#C13451"
-  },
-  {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 9",
-    eventDate: new Date(),
-    startTime: "09:30",
-    endTime: "10:15",
-    duration: 45,
-    color: "#C13451"
-  },
-  {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 2",
-    eventDate: new Date(),
-    startTime: "02:40",
-    endTime: "04:20",
-    duration: 60,
-    color: "#612C69"
-  },
-  {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 3",
-    eventDate: new Date(),
-    startTime: "06:00",
-    endTime: "09:40",
-    duration: 60,
-    color: "#C155D5"
-  },
-  {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 00",
-    eventDate: new Date(),
-    startTime: "06:20",
-    endTime: "12:55",
-    duration: 60,
-    color: "#C155D5"
-  },
-  {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 11",
-    eventDate: addDays(new Date(), 3),
-    startTime: "06:20",
-    endTime: "12:55",
-    duration: 60,
-    color: "#C155D5"
-  },
-  {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 11",
-    eventDate: addDays(new Date(), 2),
-    startTime: "06:20",
-    endTime: "12:55",
-    duration: 60,
-    color: "#C155D5"
-  },
-  {
-    eventId: Math.random(),
-    eventsTitle: "Calendar 11",
-    eventDate: addDays(new Date(), 2),
-    startTime: "06:20",
-    endTime: "12:55",
-    duration: 60,
-    color: "#C155D5"
+    color: '#C13451'
   }
 ];
+const completeEvents = [...events];
+for (let i = 1; i <= 1000; i++) {
+  completeEvents.push({
+    ...completeEvents.slice(-1)[0],
+    eventId: completeEvents.slice(-1)[0].eventId + i,
+    eventDate: addDays(new Date(), i / 10),
+    eventsTitle: 'Event ' + completeEvents.slice(-1)[0].eventId + i
+  });
+}
+// console.log(completeEvents);
 const props: RDCRootProps = {
-  events,
+  events: completeEvents,
   isLoading: false,
   selectedDate: new Date(),
   systemDate: new Date(),
@@ -153,7 +91,7 @@ const RDCContainer = (props: RDCRootProps) => {
     </RDCContext.Provider>
   );
 };
-ReactDOM.render(<RDCContainer {...props} />, document.getElementById("root"));
+ReactDOM.render(<RDCContainer {...props} />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

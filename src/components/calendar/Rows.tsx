@@ -1,21 +1,18 @@
 import React from "react";
-import { EventContainer } from "./EventContainer";
+import EventContainer from "./column/EventContainer";
 
-type RowsProps = {
-  selectedDate: string | Date;
-};
-export const Rows = (props: RowsProps) => {
-  const arr24 = Array(24).fill({});
+export const Rows = () => {
+  const [arr24] = React.useState(Array(24).fill({}));
   return (
     <>
       {arr24.map((v, i) => {
         const hour = i < 10 ? `0` + i++ : i++;
         return (
-          <div className="rdc-container__row" key={i}>
+          <div className="rdc-container__row" key={hour}>
             <div className="rdc-container__row__column rdc-container__row__column--left">
               {`${hour}:00`}
             </div>
-            <EventContainer hour={hour} selectedDate={props.selectedDate} />
+            <EventContainer hour={hour} />
           </div>
         );
       })}
