@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
-import dateFns from "date-fns";
-import DayWeekHeader from "./components/calendar/DayWeekHeader";
-import Day from "./components/calendar/day/index";
-import "./App.scss";
-import { Events } from "./type";
+import React, { useState } from 'react';
+import dateFns from 'date-fns';
+import DayWeekHeader from './components/calendar/DayWeekHeader';
+import Day from './components/calendar/day/index';
+import './App.scss';
+import { Events } from './type';
 type AppProps = {
-  selectedDate: string | Date;
+  selectedDate: string;
   events: Events[];
   isLoading: boolean;
 };
@@ -19,7 +19,9 @@ const App = (props: AppProps) => {
     setstate({
       ...state,
       selectedDate:
-        by !== 0 ? dateFns.addDays(state.selectedDate, by) : props.selectedDate
+        by !== 0
+          ? dateFns.addDays(state.selectedDate, by).toLocaleDateString()
+          : props.selectedDate
     });
   };
   return (
@@ -36,5 +38,5 @@ const App = (props: AppProps) => {
     </div>
   );
 };
-App.displayName = "Day Calendar";
+App.displayName = 'Day Calendar';
 export default App;

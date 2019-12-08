@@ -1,5 +1,5 @@
-import React from "react";
-import { Events, EventWithStyles } from "../../../type";
+import React from 'react';
+import { Events, EventWithStyles } from '../../../type';
 
 type EventProps = {
   item: Events;
@@ -7,18 +7,24 @@ type EventProps = {
 
 export const Event = (props: EventWithStyles) => {
   const width = `calc((100% - ${props.left + 16}px)/${props.order})`;
+  const min = parseInt(
+    props.startTime.slice(props.startTime.indexOf(':') + 1),
+    10
+  );
+  console.log(min);
   const styleElements = {
-    overflow: "hidden",
-    cursor: "pointer",
-    display: "flex",
-    background: "#000",
-    color: "#fff",
+    overflow: 'hidden',
+    cursor: 'pointer',
+    display: 'flex',
+    background: '#000',
+    color: '#fff',
     width,
     zIndex: 999 + props.order,
-    top: props.top,
+    top: `${props.top + Math.floor(min)}px`,
     left: props.left * props.order,
-    marginRight: "1rem",
-    padding: "4px"
+    marginRight: '1rem',
+    flexBasis: props.order,
+    padding: '4px'
   };
   return (
     <div style={styleElements} className="rdc-container__row__column__event">
@@ -27,7 +33,9 @@ export const Event = (props: EventWithStyles) => {
           {props.eventsTitle}
         </div>
 
-        <div className="rdc-container__row__column__event__container__body">{`${props.startTime} - ${props.endTime} Hrs`}</div>
+        <div className="rdc-container__row__column__event__container__body">{`${
+          props.startTime
+        } - ${props.endTime} Hrs`}</div>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import dateFns from 'date-fns';
 export const SameHour = () => {
   const getMin = dateFns.getMinutes(new Date());
-  const topPosition = getMin < 30 ? (getMin > 15 ? '2rem' : '1rem') : '3.5rem';
+  const topPosition = `${Math.floor(getMin / 4) / 4}rem`;
   const ref = useRef<HTMLInputElement>(null);
   useEffect(() => {
     ref.current &&
@@ -12,10 +12,12 @@ export const SameHour = () => {
     return () => {};
   });
   return (
-    <div
-      style={{ top: topPosition, marginLeft: '-15px' }}
-      className="same-hour-container"
-      ref={ref}
-    />
+    <div style={{ position: 'relative' }}>
+      <div
+        className="rdc-container__row__column rdc-container__row__column__same-hour"
+        ref={ref}
+        style={{ marginTop: topPosition }}
+      />
+    </div>
   );
 };

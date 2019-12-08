@@ -13,7 +13,7 @@ export type EventWithStyles = Events & {
 };
 
 export type DayProps = {
-  selectedDate: string | Date;
+  selectedDate: string;
   events: Events[];
   isLoading: boolean;
 };

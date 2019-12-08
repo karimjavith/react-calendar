@@ -1,12 +1,12 @@
-import React from "react";
-import dateFns from "date-fns";
+import React from 'react';
+import dateFns from 'date-fns';
 
 type DayWeekHeader = {
-  selectedDate: any;
+  selectedDate: string;
   changeDate: (by: number) => void;
 };
 const DayWeekHeader = (props: DayWeekHeader) => {
-  const title = `${dateFns.format(props.selectedDate, "DD MMM YYYY")}`;
+  const title = `${dateFns.format(props.selectedDate, 'DD MMM YYYY')}`;
   return (
     <div className="rdc-container__header">
       <div className="rdc-container__header__group">
@@ -20,7 +20,7 @@ const DayWeekHeader = (props: DayWeekHeader) => {
       <div className="rdc-container__header__group">
         <span
           className="rdc-container__header__group__item"
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => props.changeDate(-1)}
         >
           <i className="icon ion-android-arrow-dropleft" />
@@ -28,7 +28,7 @@ const DayWeekHeader = (props: DayWeekHeader) => {
         <span className="rdc-container__header__group__item">{title}</span>
         <span
           className="rdc-container__header__group__item"
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           onClick={() => props.changeDate(1)}
         >
           <i className="icon ion-android-arrow-dropright" />
