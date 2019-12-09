@@ -82,6 +82,7 @@
       }
       &--right {
         width: 100%;
+        overflow: hidden;
         &::after {
           content: '';
           display: block;

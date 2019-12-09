@@ -11,6 +11,7 @@ export type EventWithStyles = TEvent & {
   top: number;
   left: number;
   order: number;
+  width: number;
 };
 
 export type DayProps = {

@@ -4,7 +4,7 @@ import { RDCContext } from '../../..';
 
 export const Event = (props: EventWithStyles) => {
   const { onEventClickCb } = React.useContext<RDCContextType>(RDCContext);
-  const width = `calc((100% - ${props.left + 16}px)/${props.order})`;
+  const width = `calc((${props.width} - 200 - ${props.left + 16})/${props.order})px`;
   const styleElements = {
     overflow: 'hidden',
     cursor: 'pointer',
@@ -14,7 +14,7 @@ export const Event = (props: EventWithStyles) => {
     width,
     zIndex: 999 + props.order,
     top: props.top,
-    left: `${props.order * props.left}px`,
+    left: `${props.order * 40}px`,
     marginRight: '1rem'
   };
   return (

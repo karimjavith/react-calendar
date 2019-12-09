@@ -45,12 +45,13 @@ const Column = (props: DayProps) => {
           const elm = document.getElementById(`rdc-${hour}`);
           hourCount = {
             ...hourCount,
-            [hour]: hourCount[hour] ? hourCount[hour] + 1 : 1
+            [hour]: !hourCount[hour] ? 1 : hourCount[hour] + 1
           };
           return {
             ...ev,
             top: elm && elm.offsetTop,
             left: elm && elm.offsetLeft,
+            width: elm && elm.offsetWidth,
             order: hourCount[hour]
           };
         })
