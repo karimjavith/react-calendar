@@ -20,7 +20,7 @@ export const SameHour = () => {
     return () => {};
   });
   const style = {
-    top: clientOffSetTop + 8 + min + 'px',
+    top: clientOffSetTop + min + 4 + 'px',
     left: clientOffSetLeft + 'px',
     width: 'calc(100% - 110px)',
     border: '0.5px solid red'
